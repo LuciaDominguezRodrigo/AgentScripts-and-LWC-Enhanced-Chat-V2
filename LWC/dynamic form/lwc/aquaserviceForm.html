@@ -1,0 +1,44 @@
+<template>
+    <div class="carousel-container">
+        <div class="progress-bar">
+            <div class="progress-fill" style={progressStyle}></div>
+        </div>
+
+        <div class="carousel-viewport">
+            <template for:each={steps} for:item="step" for:index="index">
+                <div key={step.name} class={step.cssClass}>
+                    <span class="step-counter">PASO {step.displayIndex} DE {steps.length}</span>
+                    <h3 class="question-title">{step.label}</h3>
+                    
+                    <div class="input-container">
+                        <input 
+                            type={step.type} 
+                            class="custom-input" 
+                            placeholder={step.placeholder}
+                            value={step.value}
+                            oninput={handleInputChange}
+                            data-name={step.name}>
+                    </div>
+
+                    <div class="nav-controls">
+                        <button if:false={step.isFirst} class="btn-secondary" onclick={prev}>Atrás</button>
+                        
+                        <template if:false={step.isLast}>
+                            <button class="btn-primary" onclick={next} disabled={step.isInvalid}>Siguiente</button>
+                        </template>
+                        
+                        <template if:true={step.isLast}>
+                            <button class="btn-submit" onclick={handleSubmit} disabled={step.isInvalid}>Enviar Solicitud</button>
+                        </template>
+                    </div>
+                </div>
+            </template>
+        </div>
+
+        <div class="indicators">
+            <template for:each={steps} for:item="dot" for:index="dotIndex">
+                <span key={dot.name} class={dot.dotClass}></span>
+            </template>
+        </div>
+    </div>
+</template>

@@ -1,0 +1,277 @@
+:host {
+    --prosegur-yellow: #FFD200;
+    --dark-text: #172b4d;
+    --glass-bg: #ffffff; /* Blanco puro para mejor contraste en chat */
+    display: block;
+    max-width: 100%;
+}
+
+/* Contenedor principal */
+.carousel-container {
+    position: relative;
+    max-width: 400px; /* Ancho máximo ideal para chat */
+    margin: 0 auto;
+    overflow: hidden;
+    padding: 10px 0;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/* Área de las tarjetas */
+.carousel-viewport {
+    position: relative;
+    height: 380px; /* Altura fija */
+    width: 100%;
+    perspective: 1000px;
+}
+
+/* TARJETA INDIVIDUAL */
+.product-card {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    
+    width: 90%;
+    height: 100%;
+    
+    background: var(--glass-bg);
+    border-radius: 20px;
+    
+    /* PADDING CLAVE: 3.5rem a los lados evita que el texto toque los botones */
+    padding: 2rem 3.5rem; 
+    
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    box-sizing: border-box;
+    
+    /* Estados de animación */
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(0.9);
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    z-index: 1;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+/* Tarjeta Activa */
+.product-card.active {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+    z-index: 10;
+}
+
+/* --- Elementos de la tarjeta --- */
+.badge-new {
+    background: var(--prosegur-yellow);
+    font-size: 0.65rem;
+    font-weight: 800;
+    padding: 4px 10px;
+    border-radius: 12px;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #000;
+}
+
+.icon-container {
+    margin-bottom: 1rem;
+    padding: 15px;
+    background: #fff9db; /* Amarillo muy suave */
+    border-radius: 50%;
+}
+
+.product-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--dark-text);
+    margin-bottom: 0.75rem;
+    line-height: 1.2;
+}
+
+.product-desc {
+    font-size: 0.85rem;
+    color: #555;
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+    /* Limitar texto a 4 líneas para que no se desborde */
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.product-cta {
+    background: var(--dark-text);
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 8px 20px;
+    border-radius: 20px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.product-cta:hover {
+    transform: scale(1.05);
+}
+
+/* --- BOTONES CHIQUITITOS --- */
+.nav-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    
+    width: 28px;  /* Tamaño reducido */
+    height: 28px; /* Tamaño reducido */
+    
+    background: #fff;
+    border: 1px solid #e5e5e5;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    
+    cursor: pointer;
+    z-index: 20; /* Por encima de la tarjeta */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    color: var(--dark-text);
+    transition: all 0.2s;
+}
+
+.nav-button:hover {
+    background: var(--prosegur-yellow);
+    border-color: var(--prosegur-yellow);
+    transform: translateY(-50%) scale(1.1);
+}
+
+/* Pegados a los bordes */
+.nav-prev { left: 4px; }
+.nav-next { right: 4px; }
+
+/* Indicadores (puntitos) */
+.indicators {
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    z-index: 20;
+}
+
+.dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #ddd;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.dot.active {
+    background: var(--prosegur-yellow);
+    transform: scale(1.3);
+}
+
+.product-cta {
+    background: var(--dark-text);
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 10px 20px; /* Un poco más grande para facilitar el click */
+    border-radius: 20px;
+    border: none; /* Importante al cambiar a button */
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform 0.2s, background 0.2s;
+    font-family: inherit; /* Heredar fuente */
+}
+
+.product-cta:hover {
+    transform: scale(1.05);
+    background: #000; /* Negro puro al hover */
+}
+
+/* --- TARJETA DE RESUMEN (ESTILO TICKET) --- */
+.summary-card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    max-width: 360px;
+    margin: 10px auto 30px auto;
+    overflow: hidden; /* Para que la cabecera respete los bordes */
+    border: 1px solid #eee;
+}
+
+.summary-header {
+    background-color: #FFD700; /* Amarillo Prosegur */
+    color: #000;
+    padding: 15px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.1em;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.summary-body {
+    padding: 25px 20px;
+    background-color: #fff;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between; /* Separa fecha y hora a los lados */
+    gap: 20px;
+    margin-bottom: 15px;
+}
+
+.summary-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra el texto */
+    flex: 1;
+}
+
+.label {
+    font-size: 0.85em;
+    color: #888;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.value {
+    font-size: 1.3em;
+    font-weight: bold;
+    color: #000;
+}
+
+.summary-divider {
+    height: 1px;
+    background: repeating-linear-gradient(
+        to right,
+        #e0e0e0,
+        #e0e0e0 5px,
+        #ffffff 5px,
+        #ffffff 10px
+    ); /* Línea punteada sutil */
+    margin: 20px 0;
+}
+
+.summary-note {
+    text-align: center;
+    font-size: 0.85em;
+    color: #999;
+    margin: 0;
+}

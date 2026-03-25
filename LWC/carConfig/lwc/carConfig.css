@@ -1,0 +1,160 @@
+:host {
+    display: block;
+    font-family: 'Salesforce Sans', Arial, sans-serif;
+}
+
+/* --- Estilos base del Carrusel (Contenedor) --- */
+.chat-component {
+    max-width: 100%; /* Fluido para el chat */
+    margin: 0 auto;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    padding: 0.75rem;
+    border: 1px solid var(--lwc-colorBorder, #dddbda);
+    border-radius: 0.5rem;
+    background: var(--lwc-colorBackgroundAlt, #ffffff);
+    box-shadow: var(--lwc-shadowDropDown, 0 2px 4px rgba(0,0,0,0.1));
+}
+
+.media {
+    width: 100%;
+    height: 180px; /* Un poco más compacto para chat */
+    border-radius: 0.5rem;
+    overflow: hidden;
+    background: #f3f2f2;
+    margin-bottom: 0.75rem;
+}
+
+.media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ajuste perfecto */
+    display: block;
+    transition: opacity 0.3s ease;
+}
+
+/* --- Tipografía y Layout --- */
+.body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin: 0;
+    color: #1a1a1a;
+}
+
+.description {
+    margin: 0 0 0.5rem 0;
+    font-size: 0.9rem;
+    color: var(--lwc-colorTextWeak, #514f4d);
+}
+
+/* --- Especificaciones (Rojo y Negrita) --- */
+.specs-row {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+    font-size: 0.85rem;
+    background: #f9f9f9;
+    padding: 0.5rem;
+    border-radius: 4px;
+}
+
+.spec-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.label {
+    color: #514f4d;
+    font-size: 0.75rem;
+}
+
+.value-red {
+    color: #D71920; /* Rojo Mitsubishi */
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+/* --- Selector de Colores (Píldoras) --- */
+.colors-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.color-option {
+    display: flex;
+    align-items: center;
+    padding: 6px 12px;
+    border: 1px solid #dddbda;
+    border-radius: 50px; /* Píldora */
+    background: white;
+    cursor: pointer;
+    transition: all 0.2s;
+    width: 100%; /* Full width en móvil/chat */
+}
+
+.color-option:hover {
+    background-color: #f3f2f2;
+}
+
+/* Estado Seleccionado */
+.color-option.selected {
+    background-color: #000000;
+    border-color: #000000;
+    color: #ffffff;
+}
+
+.color-circle {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 1px solid rgba(0,0,0,0.1);
+    margin-right: 10px;
+}
+
+.color-name {
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+/* --- Botones de Navegación --- */
+.controls {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+    gap: 0.5rem;
+}
+
+.nav-btn {
+    flex: 1;
+    padding: 0.6rem;
+    border-radius: 0.25rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    border: none;
+}
+
+.nav-btn.primary {
+    background: var(--lwc-colorBrand, #000000);
+    color: white;
+}
+.nav-btn.primary:disabled {
+    background: #c9c7c5;
+    cursor: not-allowed;
+}
+
+.nav-btn.secondary {
+    background: white;
+    border: 1px solid #dddbda;
+    color: #514f4d;
+}

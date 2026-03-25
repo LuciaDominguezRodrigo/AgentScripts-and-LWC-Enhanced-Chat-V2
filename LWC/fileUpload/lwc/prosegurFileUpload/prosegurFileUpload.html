@@ -1,0 +1,38 @@
+<template>
+    <div class="upload-card">
+        <div class="header">
+            <lightning-icon class="header-icon" icon-name="utility:upload" size="small"></lightning-icon>
+            <h2 class="title">{label}</h2>
+        </div>
+
+        <div class="body">
+            <template lwc:if={showUpload}>
+                <template lwc:if={isUploading}>
+                    <div class="loading-state">
+                        <lightning-spinner alternative-text="Subiendo..." size="small"></lightning-spinner>
+                        <p class="loading-text">Subiendo tus archivos...</p>
+                    </div>
+                </template>
+                
+                <template lwc:else>
+                    <p class="description">Selecciona uno o varios archivos para continuar</p>
+                    <lightning-file-upload
+                        name="fileUploader"
+                        record-id={recordId}
+                        accept={acceptedFormats}
+                        onuploadfinished={handleUploadFinished}
+                        multiple> </lightning-file-upload>
+                </template>
+            </template>
+
+            <template lwc:else>
+                <div class="success-state">
+                    <div class="check-container">
+                        <lightning-icon icon-name="action:approval" size="small" class="success-icon"></lightning-icon>
+                    </div>
+                    <p class="success-text">¡Enviado con éxito!</p>
+                </div>
+            </template>
+        </div>
+    </div>
+</template>

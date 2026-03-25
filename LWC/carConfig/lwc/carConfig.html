@@ -1,0 +1,60 @@
+<template>
+    <section class="chat-component" role="region" aria-label="Configurador de Vehículo">
+        <div class="card">
+            <div class="media">
+                <img src={currentImageUrl} alt="Vista previa del vehículo" />
+            </div>
+
+            <div class="body">
+                <h2 class="title">{headerTitle}</h2>
+                
+                <div class="specs-row" if:true={isVersionSelected}>
+                    <div class="spec-item">
+                        <span class="label">Transmisión: </span>
+                        <span class="value-red">{currentTransmission}</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="label">Combustible: </span>
+                        <span class="value-red">{currentFuel}</span>
+                    </div>
+                </div>
+
+                <div if:true={isStep1} class="step-container">
+                    <p class="description">Selecciona la versión de tu vehículo:</p>
+                    <lightning-combobox
+                        name="version"
+                        label="Versión"
+                        value={selectedVersionId}
+                        placeholder="Elige una versión..."
+                        options={versionOptions}
+                        onchange={handleVersionChange}
+                        variant="label-hidden"
+                    ></lightning-combobox>
+                </div>
+
+                <div if:true={isStep2} class="step-container">
+                    <p class="description">Selecciona el color:</p>
+                    <div class="colors-grid">
+                        <template for:each={colorOptionsWithState} for:item="color">
+                            <button 
+                                key={color.name} 
+                                class={color.optionClass} 
+                                data-color={color.name} 
+                                onclick={handleColorSelect}>
+                                <span class="color-circle" style={color.style}></span>
+                                <span class="color-name">{color.name}</span>
+                            </button>
+                        </template>
+                    </div>
+                </div>
+
+                <div class="controls">
+                    <button if:true={isStep2} class="nav-btn secondary" onclick={prevStep}>Atrás</button>
+                    <button class="nav-btn primary" onclick={nextStep} disabled={isNextDisabled}>
+                        {nextLabel}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+</template>

@@ -1,0 +1,39 @@
+<template>
+    <div class="carousel-container" onmouseenter={pauseTimer} onmouseleave={resumeTimer}>
+        
+        <button class="nav-button nav-prev" onclick={prev}>
+            <lightning-icon icon-name="utility:chevronleft" size="xx-small" variant="bare"></lightning-icon>
+        </button>
+
+        <div class="carousel-viewport">
+            <template for:each={products} for:item="product" for:index="index">
+                <div key={product.id} class={product.cssClass}>
+                    
+                    <span class="badge-new">NUEVO</span>
+                    
+                    <div class="icon-container">
+                        <lightning-icon icon-name={product.icon} size="medium"></lightning-icon>
+                    </div>
+
+                    <h3 class="product-title">{product.title}</h3>
+                    <p class="product-desc">{product.description}</p>
+
+                    <button class="product-cta" onclick={handleSelection} data-index={index}>
+                        Quiero esta
+                    </button>
+                    
+                </div>
+            </template>
+        </div>
+
+        <button class="nav-button nav-next" onclick={next}>
+            <lightning-icon icon-name="utility:chevronright" size="xx-small" variant="bare"></lightning-icon>
+        </button>
+
+        <div class="indicators">
+            <template for:each={products} for:item="dot" for:index="dotIndex">
+                <button key={dot.id} class={dot.dotClass} onclick={goToSlide} data-index={dotIndex}></button>
+            </template>
+        </div>
+    </div>
+</template>

@@ -1,0 +1,92 @@
+<template>
+    <div class="time-selector-container">
+        
+        <template if:true={showCalendar}>
+            <div class="calendar-section fade-in">
+                <h2 class="section-title">Selecciona fecha</h2>
+                <div class="calendar-header">
+                    <button class="nav-button" onclick={previousMonth}>&lt;</button>
+                    <h3 class="month-year">{currentMonthYear}</h3>
+                    <button class="nav-button" onclick={nextMonth}>&gt;</button>
+                </div>
+                <div class="weekdays">
+                    <template for:each={weekdays} for:item="day">
+                        <div key={day} class="weekday">{day}</div>
+                    </template>
+                </div>
+                <div class="days-grid">
+                    <template for:each={days} for:item="day">
+                        <div key={day.date} class={day.class} onclick={selectDate} data-date={day.date}>
+                            {day.dayNumber}
+                        </div>
+                    </template>
+                </div>
+                <div class="legend">
+                    <div class="legend-item"><span class="dot available"></span> Disp</div>
+                    <div class="legend-item"><span class="dot selected"></span> Selec</div>
+                    <div class="legend-item"><span class="dot holiday"></span> Festivo</div>
+                </div>
+            </div>
+        </template>
+
+        <template if:true={showTime}>
+            <div class="time-section fade-in">
+                <h2 class="section-title">Selecciona Hora</h2>
+                <p class="subtitle">Para el día {selectedDate}</p>
+                
+                <div class="time-slots">
+                    <template for:each={availableHours} for:item="hour">
+                        <button key={hour.val} class={hour.class} onclick={selectTime} data-hour={hour.val}>
+                            {hour.label}
+                        </button>
+                    </template>
+                </div>
+
+                <div class="legend">
+                    <div class="legend-item"><span class="dot available"></span> Libre</div>
+                    <div class="legend-item"><span class="dot selected"></span> Tu selección</div>
+                    <div class="legend-item"><span class="dot disabled"></span> Ocupado</div>
+                </div>
+
+                <div class="actions">
+                    <button class="nav-button secondary" onclick={handleBack}>Atrás</button>
+                </div>
+            </div>
+        </template>
+
+        <template if:true={showConfirmation}>
+        <div class="confirmation-container fade-in">
+            
+            <h2 class="main-title">Resumen de tu selección</h2>
+            
+            <div class="report-card">
+
+                <div class="report-body">
+                    <div class="data-group">
+                        <p class="data-label">Fecha Agendada</p>
+                        <p class="data-value">{selectedDate}</p>
+                    </div>
+
+                    <div class="divider"></div>
+
+                    <div class="data-group">
+                        <p class="data-label">Hora de Inicio</p>
+                        <p class="data-value highlight">{selectedTime}:00</p>
+                    </div>
+                </div>
+
+                <div class="report-footer">
+                    <p class="info-text">Revisa los datos antes de enviar.</p>
+                </div>
+            </div>
+
+            <div class="actions-centered">
+                <button class="btn-ghost" onclick={handleBack}>Modificar</button>
+                <button class="btn-primary-large" onclick={handleConfirm}>Confirmar Cita</button>
+            </div>
+
+        </div>
+    </template>
+
+    </div>
+</template>

@@ -1,0 +1,100 @@
+:host {
+    --prosegur-yellow: #FFD200;
+    --prosegur-black: #000000;
+    display: block;
+    max-width: 480px;
+    margin: auto;
+    font-family: "Segoe UI", sans-serif;
+}
+
+.upload-card {
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    border: 1px solid #e0e0e0;
+    overflow: hidden;
+    margin: 8px;
+    transition: all 0.3s ease;
+}
+
+.header {
+    background-color: var(--prosegur-yellow);
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.header-icon {
+    --slds-c-icon-color-foreground-default: var(--prosegur-black);
+}
+
+.title {
+    font-weight: 800;
+    color: var(--prosegur-black);
+    font-size: 0.95rem;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.body {
+    padding: 24px;
+    text-align: center;
+    min-height: 140px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.description {
+    font-size: 0.9rem;
+    color: #4b4b4b;
+    margin-bottom: 20px;
+}
+
+/* Estado de carga */
+.loading-state {
+    position: relative;
+    padding: 20px;
+}
+
+.loading-text {
+    margin-top: 40px;
+    font-size: 0.85rem;
+    color: #888;
+    font-style: italic;
+}
+
+/* Estado éxito mejorado */
+.success-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    animation: scaleIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.check-container {
+    background: #e1f5fe;
+    padding: 15px;
+    border-radius: 50%;
+    margin-bottom: 5px;
+}
+
+.success-text {
+    color: #04844b;
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+@keyframes scaleIn {
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* Ajuste del botón nativo de Salesforce para que se vea más limpio */
+lightning-file-upload {
+    --slds-c-button-spacing-block-start: 10px;
+    --slds-c-button-spacing-block-end: 10px;
+}

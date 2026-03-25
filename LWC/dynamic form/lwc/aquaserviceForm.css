@@ -1,0 +1,103 @@
+:host {
+    --brand-color: #0070d2; /* Puedes cambiarlo al azul de Aquaservice */
+    --dark-text: #172b4d;
+    display: block;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.carousel-container {
+    padding: 20px;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.progress-bar {
+    height: 6px;
+    background: #f0f0f0;
+    border-radius: 3px;
+    margin-bottom: 25px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: var(--brand-color);
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.carousel-viewport {
+    position: relative;
+    height: 240px;
+}
+
+.form-card {
+    position: absolute;
+    width: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(30px);
+    transition: all 0.4s ease;
+}
+
+.form-card.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+}
+
+.question-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--dark-text);
+    margin: 10px 0 20px 0;
+}
+
+.custom-input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #dddbda;
+    border-radius: 8px;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+.nav-controls {
+    display: flex;
+    gap: 10px;
+    margin-top: 30px;
+}
+
+.btn-primary, .btn-submit {
+    flex: 2;
+    background: var(--dark-text);
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 20px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btn-submit { background: #2e844a; }
+
+.btn-secondary {
+    flex: 1;
+    background: #f3f3f2;
+    border: 1px solid #dddbda;
+    border-radius: 20px;
+    padding: 12px;
+}
+
+button:disabled { opacity: 0.3; cursor: not-allowed; }
+
+.indicators {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 20px;
+}
+
+.dot { width: 8px; height: 8px; background: #e0e0e0; border-radius: 50%; }
+.dot.active { background: var(--brand-color); transform: scale(1.2); }
